@@ -1,0 +1,12 @@
+git fetch <远程主机名> <分支名>
+
+# 取回 origin 远程主机的 master 分支:
+$ git fetch origin master
+
+# 取回 origin 远程主机的全部分支到本地:
+$ git fetch origin
+
+# 所取回的更新,在本地主机上要用 "远程主机/分支" 的形式读取.比如 origin 远程主机的 master 分支,就要用 origin/master 读取.
+
+# 取回所有远端仓库的分支.一般只有一个远端仓库
+$ git fetch --all

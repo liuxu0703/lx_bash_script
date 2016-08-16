@@ -1,0 +1,39 @@
+mongodump 导出库
+# mongodump -h 127.0.0.1 -d test -o ~/home/Ducoment/
+
+-h: MongDB所在服务器地址,如: 127.0.0.1 , 可指定端口: 127.0.0.1:27017
+-d: 需要备份的数据库实例,如: test
+-o: 备份的数据存放位置,如: ~/home/Ducoment/mongo_dump/
+
+
+mongorestore 导入库
+# mongorestore -h 127.0.0.1 -d test dbdirectory
+
+-h: MongoDB所在服务器地址
+-d: 需要恢复的数据库实例,如: test , 名称可以和备份时不一样,如: test2
+--drop: 恢复的时候,先删除当前数据,然后恢复备份的数据. 慎用.
+末尾为备份数据所在位置，如: ~/home/Ducoment/mongo_dump/
+
+
+mongoexport 导出表
+# ./bin/mongoexport -d test -c students -o students.dat
+
+-h: 指明数据库宿主机的IP
+-d: 指明数据库的名字
+-c: 指明collection的名字
+-o: 指明到要导出的文件名
+-f: 指明要导出那些列
+-q: 指明导出数据的过滤条件
+-u: 指明数据库的用户名
+-p: 指明数据库的密码
+--csv: 以csv格式导出, 默认为json格式导出
+
+
+mongoimport 导入表
+# mongoimport -d test -c students students.dat
+
+-d: 指明数据库名
+-c: 指明collection名
+--type: 指定导入格式,默认以json格式导入
+--headerline: 指明第一行是列名,不需要导入
+

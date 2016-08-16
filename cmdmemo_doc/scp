@@ -1,0 +1,10 @@
+scp
+
+本机到远端:
+# scp ~/Document/file root@xxx.xxx.xxx.xxx:/tmp/
+
+远端到本机:
+# scp -r root@xxx.xxx.xxx.xxx:/tmp/dir/ ./
+
+-r: 拷贝目录
+-P: 指定 SSH 端口, 如果 SSH 没有更改默认端口则不用添加

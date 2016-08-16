@@ -1,0 +1,11 @@
+ln [-sf] origin_file target_link
+创建链接文件.
+
+-s 创建 soft link
+-f 如果目标文件存在,则删除后再创建链接
+
+不加任何参数则为创建 hard link:
+# ln /etc/crontab crontab2
+
+加入 -s 参数创建 soft link:
+# ln -s /etc/crontab crontab3

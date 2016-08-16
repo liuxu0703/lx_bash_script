@@ -1,0 +1,4 @@
+git commit
+
+# 提交快照,并编写提交信息
+$ git commit -m "commit message"

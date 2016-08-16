@@ -1,0 +1,4 @@
+git merge
+
+# 将远端分支 origin/develop 合并到本地当前分支
+$ git merge origin/develop

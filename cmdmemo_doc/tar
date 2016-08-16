@@ -1,0 +1,26 @@
+tar
+
+打包 /etc 目录到 /tmp/etc.tar , 不压缩
+# tar -cvf /tmp/etc.tar /etc
+
+打包 /etc 目录到 /tmp/etc.tar , 以 gzip 压缩
+# tar -zcvf /tmp/etc.tar.gz /etc
+
+打包 /etc 目录到 /tmp/etc.tar , 以 bzip2 压缩
+# tar -jcvf /tmp/etc.tar.bz2 /etc
+
+查阅 /tmp/etc.tar.gz 内有哪些文件:
+# tar -ztvf /tmp/etc.tar.gz
+
+解包 /tmp/etc.tar.gz 到 /usr/local/src 下:
+# cd /usr/local/src
+# tar -zxvf /tmp/etc.tar.gz
+
+解包 /tmp/etc.tar.gz 内的 etc/passwd
+# cd /tmp
+# tar -zxvf /tmp/etc.tar.gz
+# tar -zxvf /tmp/etc.tar.gz etc/passwd
+
+打包 /home, /etc ，但不包括 /home/dmtsai
+# tar --exclude /home/dmtsai -zcvf myfile.tar.gz /home/* /etc
+

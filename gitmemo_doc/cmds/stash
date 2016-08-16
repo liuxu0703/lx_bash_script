@@ -1,0 +1,19 @@
+# 暂存改动,并倒退到改动前状态(以便更新)
+git add .
+git stash
+git pull origin master
+
+# 列出stash列表
+git stash list
+
+# 恢复stash
+git stash apply
+
+# 恢复上一个stash
+git stash pop
+
+# 删除stash
+git stash drop <id>
+
+# 清空stash
+git stash clear

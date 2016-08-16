@@ -1,0 +1,44 @@
+git log
+
+# 显示简要的增改行数统计,每次提交文件的变更统计
+$ git log --stat
+
+# 显示前n条提交
+$ git log -n
+
+# 一行显示,只显示哈希值和提交说明
+$ git log --pretty=oneline
+
+# 显示2天内的提交
+$ git log --since=2.days
+
+# 显示作者为liuxu的提交
+$ git log --author=liuxu
+
+# 显示提交者为liuxu的提交
+$ git log --committer=liuxu
+
+# 显示commit内包含'something'的提交
+$ git log --grep=something
+
+# 2015年10月期间, liuxu提交, 位于项目的 t/ 目录下的文件
+$ git log --author=liuxu --since="2015-10-01" --before="2015-11-01" -- t/
+
+
+-(n) 仅显示最近的 n 条提交
+--since, --after 仅显示指定时间之后的提交。
+--until, --before 仅显示指定时间之前的提交。
+--author 仅显示指定作者相关的提交。
+--committer 仅显示指定提交者相关的提交。
+
+
+-p 按补丁格式显示每个更新之间的差异。
+--stat 显示每次更新的文件修改统计信息。
+--shortstat 只显示 --stat 中最后的行数修改添加移除统计。
+--name-only 仅在提交信息后显示已修改的文件清单。
+--name-status 显示新增、修改、删除的文件清单。
+--abbrev-commit 仅显示 SHA-1 的前几个字符，而非所有的 40 个字符。
+--relative-date 使用较短的相对时间显示（比如，“2 weeks ago”）。
+--graph 显示 ASCII 图形表示的分支合并历史。
+--pretty 使用其他格式显示历史提交信息。可用的选项包括 oneline，short，full，fuller 和 format（后跟指定格式）。
+

@@ -1,0 +1,13 @@
+git diff
+
+# 显示 未缓存 的改动
+$ git diff
+
+# 显示 已缓存 的改动
+$ git diff --cache
+
+# 显示 未缓存 和 已缓存 的所有改动
+$ git diff HEAD
+
+# 显示改动摘要
+$ git diff --stat 

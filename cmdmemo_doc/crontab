@@ -1,0 +1,39 @@
+crontab [-u username] [-l|-e|-r]
+-u 只有root用户可执行:帮助其他用户编辑 crontab 工作调度
+-l 列出工作内容
+-e 编辑工作内容
+-r 删除所有工作内容.若只想删除一项,使用 -e 进行编辑
+
+crontab -e 只可编辑用户的作业
+系统的作业需要编辑 /etc/crontab 文件
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+
+时间格式:
+*   任何时刻都接受
+,   列出的时刻
+-   列出的时段
+/n  每隔 n 单位间隔
+
+每年的 9月9日23时59分 发送邮件
+59 23 9 9 * mail mingmimg < ~/happy_birthd.txt
+
+每个 周五下午5时 提醒自己要嗨皮了
+0 17 * * 5 ~/week_end.sh
+
+每 5天 以 root 身份执行 /root/work 目录下的可执行文件
+run-parts 为 CentOS 特有
+* * */5 * * root run-parts /root/work
+
+每天的 3:30 和 6:30 执行作业 
+29 3,6 * * * command
+
+每天的 8时到12时 的 20分 执行作业
+20 8-12 * * * command

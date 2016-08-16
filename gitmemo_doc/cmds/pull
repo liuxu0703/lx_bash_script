@@ -1,0 +1,11 @@
+git pull <远程主机名> <远程分支名>:<本地分支名>
+
+# 取回 origin 主机的 next 分支，与本地的 master 分支合并:
+$ git pull origin next:master
+
+# 如果远程分支是与当前分支合并，则冒号后面的部分可以省略:
+$ git pull origin next
+
+# 这等同于先做 git fetch，再做 git merge :
+$ git fetch origin
+$ git merge origin/next
