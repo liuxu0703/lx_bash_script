@@ -1,0 +1,19 @@
+config 配置命令
+--global 配置全局设置.若无此参数则只配置当前项目设置.
+
+# 修改全局命令别名
+$ git config --global alias.co checkout
+$ git config --global alias.st status
+$ git config --global alias.ci commit
+$ git config --global alias.br branch
+
+# 修改全局用户名及邮箱
+$ git config --global user.name "liuxu0703"
+$ git config --global user.email "liuxu-0703@163.com"
+
+# 修改默认commit编辑器
+$ git config --global core.editor vim
+
+# 为当前项目保存账号密码,以便下次操作远端分支不必再输入
+$ git config credential.helper store
+

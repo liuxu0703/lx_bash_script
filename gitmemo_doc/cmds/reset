@@ -1,0 +1,17 @@
+reset
+重置命令.根据参数不同,实现对三个区域的操作: 工作区,暂存区,版本库.
+
+#　不重置工作区; 重置暂存区; HEAD指针不移动. 相当于 git add 的后悔药.
+$ git reset
+
+# 仅将 filename 文件撤出暂存区,暂存区其他文件不变. 相当于 git add 某个文件的后悔药.
+$　git reset -- filename
+
+# 不重置工作区; 重置暂存区; 将HEAD指针指向commit;
+$ git reset <commit>
+
+# (危险命令) 重置工作区到commit; 重置暂存区; 将HEAD指针指向commit;
+$ git reset --hard <commit>
+
+# 不重置工作区; 不重置暂存区; 将HEAD指针指向commit;
+$ git reset --soft <commit>

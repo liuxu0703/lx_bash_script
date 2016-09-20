@@ -1,4 +1,17 @@
+# 提交暂存区命令
 git commit
+-a:  对本地所有修改的文件执行提交操作(不包括 untracked file)
+-m:  用命令行编写提交日志
 
-# 提交快照,并编写提交信息
+# 提交暂存区文件,并在命令行编写提交日志
 $ git commit -m "commit message"
+
+# 追加修改
+$ git commit --amend
+
+参考命令:
+# 修改 git commit 默认的文本编辑器:
+$ git config --global core.editor vim
+
+# 保存/恢复工作区命令:
+$ git stash

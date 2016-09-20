@@ -1,0 +1,7 @@
+add
+
+# 添加文件到暂存区
+$ git add path
+
+# 把path(若无则为当前目录)中所有tracked文件改动添加到暂存区,而忽略所有untracted的文件.
+$ git add -u [path]

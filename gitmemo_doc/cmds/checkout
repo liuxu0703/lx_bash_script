@@ -1,0 +1,16 @@
+checkout
+
+# 汇总显示 工作去,暂存区,HEAD指针 的差异
+$ git checkout
+
+# (危险命令) 用当前版本 file_name 文件覆盖工作区同名文件
+$ git checkout file_name
+
+# 切换分支
+$ git checkout branch_name
+
+# 创建并切换分支
+$ git checkout -b branch_name
+
+# 创建并切换分支,分支开始处为commit
+$ git checkout -b branch_name <commit>

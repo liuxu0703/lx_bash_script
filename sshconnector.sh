@@ -131,23 +131,21 @@ function SelectHost() {
         ssh_command="$user@$ip:$port"
     fi
     
-    echo "connect by [ssh $ssh_command] with password [$password]"
-    sshpass -p $password ssh $user@$ip
-    
-}
-
-#param should be $@
-function ProcessParam() {
-    if [ "$1" == "-h" ]; then
-        ShellHelp
-        exit
+    if [ "$password" == "" -o $(which sshpass) == "" ]; then
+        echo "connect by ssh $user@$ip"
+        ssh $user@$ip
     else
-        SelectHost
+        echo "connect by [ssh $ssh_command] with password [$password]"
+        sshpass -p $password ssh $user@$ip
     fi
 }
-
 
 #=============================
 #main()
 
-ProcessParam $*
+if [ "$1" == "-h" ]; then
+    ShellHelp
+    exit
+else
+    SelectHost
+fi

@@ -36,7 +36,7 @@ function ProcessOptions() {
                     $EDITOR $CMD_DIR/$cmd &
                 else
                     echo "memo file does not exist for git command $cmd"
-                    read -p "do you want to create new memo file for $cmd ? "
+                    read -p "do you want to create new memo file for $cmd ? (y/n): "
                     if [[ ( "$REPLY" == "y" ) || ( "$REPLY" == "Y" ) || ( "$REPLY" == "yes" ) ]]; then
                         echo "$cmd" > $CMD_DIR/$cmd
                         $EDITOR $CMD_DIR/$cmd &

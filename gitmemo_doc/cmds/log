@@ -24,6 +24,8 @@ $ git log --grep=something
 # 2015年10月期间, liuxu提交, 位于项目的 t/ 目录下的文件
 $ git log --author=liuxu --since="2015-10-01" --before="2015-11-01" -- t/
 
+# 可视化显示分支历史
+$ git log --oneline --decorate --graph --all
 
 -(n) 仅显示最近的 n 条提交
 --since, --after 仅显示指定时间之后的提交。

@@ -1,6 +1,25 @@
-# 轻量标签: 指向提交对象的引用
-# 附注标签: 仓库中的一个独立对象.建议使用附注标签.
+tag
+轻量标签: 指向提交对象的引用.
+附注标签: 仓库中的一个独立对象.
 
-# 打印当前仓库的所有标签
+# 列出当前仓库所有标签
 $ git tag
 
+# 创建轻量标签,指向commit.若没有写commit则指向当前HEAD.
+$ git tag tag_name <commit>
+
+# 创建附注标签,指向当前HEAD. 标签分类为 v1.4 , 标签描述为 'milestone for v1.4'
+$ git tag -a v1.4 -m 'milestone for v1.4'
+
+# 删除标签
+$ git tag -d tag_name
+
+# 检出到标签
+$ git checkout tag_name
+
+# 查看标签的版本信息
+$ git show tag_name
+
+# 发布标签. 默认 git push 不会将标签对象提交到服务器,需要显式操作：
+$ git push origin v0.1.2  # 将v0.1.2标签提交到git服务器
+$ git push origin –tags   # 将本地所有标签一次性提交到git服务器

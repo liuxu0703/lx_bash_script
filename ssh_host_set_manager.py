@@ -17,9 +17,12 @@ class Host:
         self.ip = self.getText(xml_node.getElementsByTagName('ip')[0])
         self.port = self.getText(xml_node.getElementsByTagName('port')[0])
         self.user = self.getText(xml_node.getElementsByTagName('user')[0])
-        self.password = self.getText(xml_node.getElementsByTagName('password')[0])
         self.index = int(self.getText(xml_node.getElementsByTagName('index')[0]))
         active = self.getText(xml_node.getElementsByTagName('enabled')[0])
+        try:
+            self.password = self.getText(xml_node.getElementsByTagName('password')[0])
+        except:
+            self.password = ""
         if active == 'true':
             self.enabled = True
         else:

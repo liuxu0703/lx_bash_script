@@ -14,3 +14,8 @@ $ git branch -m old_branch_name new_branch_name
 
 # 创建本地分支
 $ git branch BRANCH_NAME
+
+
+参考命令:
+# 切换分支命令:
+$ git checkout BRANCH_NAME
