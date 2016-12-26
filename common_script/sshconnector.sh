@@ -1,8 +1,7 @@
 #!/bin/bash
+# author : liuxu-0703@163.com
 
-#       AUTHOR : liuxu-0703@163.com
-
-#v1.0   2016-05-25
+# v1.0   2016-05-25
 #       list and connect to remote ssh server
 
 
@@ -10,7 +9,7 @@ DEBUG="false"
 
 SCRIPT_PATH="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 HOST_MANAGER_PY=$SCRIPT_PATH/ssh_host_set_manager.py
-HOST_XML=$SCRIPT_PATH/ssh_host_set.xml
+HOST_XML=$SCRIPT_PATH/conf/ssh_host_set.xml
 HOST_MANAGER="python $HOST_MANAGER_PY"
 
 DEBUG() {
@@ -106,7 +105,7 @@ function SelectHost() {
         echo "*****************************************************"
         SelectHost
     elif [[ ( "$REPLY" == "e" ) || ( "$REPLY" == "E" ) ]]; then
-        gedit $HOST_XML
+        vim $HOST_XML
         echo
         exit
     elif [ $(IsInterger $REPLY 1 ${#A_HOSTS[*]}) == "true" ]; then

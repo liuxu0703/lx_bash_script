@@ -1,5 +1,11 @@
 #!/bin/bash
+# author : liuxu-0703@163.com
+# date   : 2016-01-01
+#
+# execute this script use "source" or "." in ~/.bashrc or /etc/profile
+# to import bellow command into environment.
 
+# back up the given path.
 function backup() {
     local BACKUP_DIR=$HOME/backup_dir
     local BACKUP_SUFFIX="bkp"
@@ -8,11 +14,11 @@ function backup() {
     local day=$(date +%F)
     local time=$(date +%H%M%S)
     
-    if [ $# -eq 0 ]; then
+    if [ $# -eq 0 -o "$1" == "-h" ]; then
         echo "backup usage:"
         echo "backup file   : backup the given file or dir"
         echo "backup -l     : list backup files for today"
-        return
+        return 0
     fi
     
     if [ "$1" == "-l" ]; then
@@ -21,12 +27,12 @@ function backup() {
         else
             echo "* no backup files for today yet"
         fi
-        return
+        return 0
     fi
     
     if [ ! -e "$1" ]; then
         echo "* the given path does not exists."
-        return
+        return 1
     fi
     
     if [ ! -d $BACKUP_DIR ]; then
@@ -52,6 +58,7 @@ function backup() {
     fi
 }
 
+# change directory to the given dir, or parent dir if what is given is a file.
 function cdd() {
     if [ $# -eq 0 ]; then
         echo "cdd usage:"
@@ -61,10 +68,10 @@ function cdd() {
     
     if [ ! -e "$1" ]; then
         echo "* the given path does not exists."
-        return
+        return 1
     elif [ -d "$1" ]; then
         cd "$1"
-        return
+        return 0
     fi
     
     local param=$1
@@ -73,35 +80,15 @@ function cdd() {
     cd $parent_dir
 }
 
-# go to project root dir. only valid for android studio project.
-function proj_root_as() {
-    local path=$(pwd)
-    local cur_path=$path
-    local tmp_path
-    local prj_path
-
-    tmp_path=$path
-    cd $tmp_path > /dev/null
-    while true; do
-        if [ -f settings.gradle ]; then
-            break
-        elif [ "$tmp_path" == "/" ]; then
-            cd $cur_path > /dev/null
-            echo "fail to locate project root - is this dir in an android studio project?"
-            return
-        fi
-        cd ..
-        tmp_path=$(pwd)
-    done
-
-    prj_path=$tmp_path
-    if [ $? -eq 0 ]; then
-        cd $prj_path
-        echo "from: $path"
-    else
-        cd $cur_path > /dev/null
-        echo "fail to locate project root -- is this dir in an android studio project?"
+# go to project root dir. for git projects only.
+function gitroot() {
+    local git_dir=$(git rev-parse --git-dir)
+    if [ $? -ne 0 ]; then
+        echo "* not in directory or sub-directory of a git project. pls check."
+        return 1
     fi
+    local proj_dir=$(readlink -f $(dirname $git_dir))
+    cd $proj_dir
 }
 
 

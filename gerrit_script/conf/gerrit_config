@@ -1,0 +1,24 @@
+#!/bin/bash
+# config for gitclone.sh and gitpush.sh
+
+GIT_ADDR="121.40.91.109"
+GIT_PORT="29418"
+
+REVIEWERS=(\
+    yangzy\
+    fancc\
+    lianghj\
+    xumq\
+    niuhx\
+    shangsb\
+    mengql\
+    liux\
+    zhangm\
+    tanp\
+    zhaosx\
+    chenhq\
+)
+
+function GetReviewerEmail() {
+    echo $1"@czfw.cn"
+}

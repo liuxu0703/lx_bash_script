@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
+<KeywordSetManager>
+
+    <keywordset>
+        <name>ALL</name>
+        <type>exclude</type>
+        <active>true</active>
+        <keywords>
+
+        </keywords>
+    </keywordset>
+
+    <keywordset>
+        <name>recent</name>
+        <type>include</type>
+        <active>true</active>
+        <keywords>
+            <k>liuxu</k>
+            <k>SwipeRefresh</k>
+            <k>Danmaku</k>
+            <k>watermark</k>
+            <k>ExoVideoPlayer</k>
+            <k>ExoAudioPlayer</k>
+            <k>EventLogger</k>
+
+            <k>AndroidRuntime</k>
+            <k>#System.err</k>
+            <k>#Volley</k>
+            <k>#dalvikvm</k>
+            <k>#libc</k>
+            <k>#DEBUG</k>
+            <k>IndexTree</k>
+
+            <k>#ImageLoader</k>
+            <k>Request</k>
+            <k>HotFix</k>
+            <k>AndFix</k>
+            <k>PatchManager</k>
+
+            <k>ExoAudioPlayer</k>
+            <k>HlsPlayView</k>
+            <k>M3uPlayer</k>
+            <k>M3uParser</k>
+            <k>ViewInject</k>
+
+            <k>BaseApp</k>
+            <k>IMUtils</k>
+            <k>RongIM</k>
+            <k>ShareTokenPool</k>
+
+            <k>ECO_FM</k>
+            <k>AccountManager</k>
+            <k>TopicMessageManager</k>
+            <k>SystemMessageManager</k>
+            <k>VoiceManager</k>
+            <k>SimpleDiskCache</k>
+            <k>BitmapProcessor</k>
+            <k>UploadAudioHelper</k>
+            <k>UploadImageHelper</k>
+            <k>UploadVideoHelper</k>
+            <k>FMPlayHelper</k>
+            <k>IPAudioPlayer</k>
+            <k>qupai</k>
+
+            <k>RichInput</k>
+            <k>Splash</k>
+        </keywords>
+    </keywordset>
+
+
+    <keywordset>
+        <name>seem</name>
+        <type>include</type>
+        <active>true</active>
+        <keywords>
+            <k>AndroidRuntime</k>
+            <k>#System.err</k>
+            <k>#Volley</k>
+            <k>#dalvikvm</k>
+            <k>#libc</k>
+            <k>#DEBUG</k>
+
+            <k>liuxu</k>
+            <k>#ImageLoader</k>
+
+            <k>SwipeRefresh</k>
+            <k>watermark</k>
+            <k>Request</k>
+            <k>HotFix</k>
+            <k>AndFix</k>
+            <k>PatchManager</k>
+            <k>IMUtils</k>
+            <k>RongIM</k>
+            <k>AccountManager</k>
+            <k>VoiceManager</k>
+
+            <k>QiniuUpload</k>
+
+            <k>SplashActivity</k>
+        </keywords>
+    </keywordset>
+
+
+    <keywordset>
+        <name>Nubia_exclude</name>
+        <type>exclude</type>
+        <active>true</active>
+        <keywords>
+            <k>LocSvc_libulp</k>
+            <k>LocSvc_api_v02</k>
+            <k>LocSvc_ApiV02</k>
+            <k>LocSvc_eng_nmea</k>
+            <k>LocSvc_eng</k>
+            <k>LocSvc_afw</k>
+            <k>LocSvc_ulp_log</k>
+
+            <k>gsiff_sp_sns1</k>
+            <k>gsiff_sp_com</k>
+            <k>gsiff_dmn</k>
+
+            <k>XTWiFiOS</k>
+            <k>XTWiFiLP</k>
+
+            <k>nubiatel</k>
+            <k>Ulp_jni</k>
+            <k>Wiper_jni</k>
+            <k>gpsone_dmn</k>
+            <k>SMACK</k>
+            <k>ACDB-LOADER</k>
+            <k>MSAP-NATIVE</k>
+            <k>libGameXtend</k>
+            <k>JavaBinder</k>
+            <k>Adreno-EGL</k>
+            <k>lmn</k>
+            <k>AmSmartShowFuncsImpl</k>
+            <k>ThermalEngine</k>
+            <k>AppTrafficModel</k>
+            <k>TrafficModelManager</k>
+            <k>rmt_storage</k>
+            <k>QCALOG</k>
+
+            <k>PowerManager</k>
+            <k>PackageManager</k>
+            <k>AlarmManager</k>
+            <k>AudioPolicyManagerUtil</k>
+            <k>AudioPolicyManager</k>
+            <k>SmartAudioService</k>
+            <k>viewflow</k>
+
+            <k>dalvikvm</k>
+            <k>LBSSystemMonitorService</k>
+
+            <k>MSimSignalClusterView</k>
+            <k>MSAPMReceiver</k>
+            <k>MSAPM</k>
+            <k>StatusBar.MSimNetworkController</k>
+            <k>wpa_supplicant</k>
+            <k>wifi_gbk2utf</k>
+
+        </keywords>
+    </keywordset>
+
+
+    <keywordset>
+        <name>Huawei_exclude</name>
+        <type>exclude</type>
+        <active>true</active>
+        <keywords>
+
+            <k>PowerManager</k>
+            <k>PowerManagerService</k>
+            <k>PackageManager</k>
+            <k>AlarmManager</k>
+            <k>AudioPolicyManagerUtil</k>
+            <k>AudioPolicyManager</k>
+            <k>UsbDeviceManager</k>
+            <k>SmartAudioService</k>
+            <k>viewflow</k>
+            <k>dalvikvm</k>
+
+            <k>SignalUnitUnicomView</k>
+            <k>KeyguardUpdateMonitor</k>
+
+            <k>AKMD2</k>
+            <k>HwLauncher</k>
+            <k>HwActivityManagerService</k>
+            <k>HwSystemManager</k>
+            <k>ArpVerifier</k>
+            <k>logserver</k>
+            <k>CommandListener</k>
+            <k>SupplicantHeartBeat</k>
+            <k>SecondaryTablController</k>
+            <k>NetdConnector</k>
+            <k>HwWifiStateMachine</k>
+            <k>WifiHW</k>
+            <k>wpa_supplicant</k>
+
+        </keywords>
+    </keywordset>
+
+
+    <keywordset>
+        <name>Samsung_exclude</name>
+        <type>exclude</type>
+        <active>true</active>
+        <keywords>
+
+            <k>PowerManager</k>
+            <k>PowerManagerService</k>
+            <k>PackageManager</k>
+            <k>ActivityManager</k>
+            <k>AlarmManager</k>
+            <k>AudioPolicyManagerUtil</k>
+            <k>AudioPolicyManager</k>
+            <k>UsbDeviceManager</k>
+            <k>SmartAudioService</k>
+            <k>viewflow</k>
+            <k>dalvikvm</k>
+
+            <k>MSim-SignalClusterView</k>
+            <k>StatusBar.MSimNetworkController</k>
+            <k>rmt_storage</k>
+            <k>BatteryMeterView</k>
+            <k>BatteryService</k>
+            <k>SMD</k>
+            <k>KeyguardUpdateMonitor</k>
+            <k>STATUSBAR-WifiQuickSettingButton</k>
+            <k>DataRouter</k>
+            <k>lights</k>
+            <k>ConnectivityService</k>
+            <k>SamsungIME</k>
+            <k>MotionRecognitionService</k>
+            <k>STATUSBAR-PhoneStatusBar</k>
+            <k>ProcessCpuTracker</k>
+
+            <k>JavaBinder</k>
+            <k>AbsListView</k>
+            <k>StatusBar.NetworkController</k>
+            <k>MotionRecognitionManager</k>
+            <k>SSRMv2</k>
+
+            <k>MtpServerJNI</k>
+            <k>MTPJNIInterface</k>
+            <k>AlarmManagerEXT</k>
+            <k>MediaProvider</k>
+            <k>MediaScanner</k>
+            <k>MTPPlaObsrvr</k>
+            <k>MTPPlaObsrvr</k>
+            <k>CscFactoryReceiver</k>
+            <k>ContentApp</k>
+            <k>CscUpdateService</k>
+            <k>CscParser</k>
+            <k>FaceScanner</k>
+            <k>SELinux</k>
+            <k>DocumentBroadcastReceiver</k>
+            <k>DisplayPowerController</k>
+            <k>LightsService</k>
+            <k>TLC_TIMA_PKM_measure_kernel</k>
+            <k>TimaService</k>
+            <k>DateView</k>
+        </keywords>
+    </keywordset>
+
+</KeywordSetManager>

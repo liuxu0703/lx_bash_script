@@ -1,4 +1,5 @@
 #!/bin/bash
+# author : liuxu-0703@163.com
 
 #v1.0   format code. for version 1.0, code_formatter.sh did the following things:
 #       1. convert tab to 4 spaces
@@ -9,8 +10,8 @@
 #       -m: remove all ^M and ^Z chars in the file.
 #       -b: print backup files.
 
-DEBUG="true"
-B_RM_MZ="false"
+DEBUG=false
+B_RM_MZ=false
 SH_DOC=$(dirname $0)/sh_document
 SH_DOCUMENT=$(dirname $0)/sh_document/document$(date +%m%d)
 BACKUP_DIR=$SH_DOCUMENT/code_formatter_backup
@@ -20,8 +21,10 @@ TMP_FILE=/tmp/code_formatter_tmpfile_$(date +%m%d%H%M%S)
 declare -a FILE_ARR
 FILE_ARR_LENGTH=${#FILE_ARR[*]}
 
+#===============================================
+
 DEBUG() {
-    if [ "$DEBUG" == "true" ]; then
+    if $DEBUG; then
         $@
     fi
 }
@@ -105,7 +108,7 @@ function ProcessParam() {
     fi
     
     if [ "$1" == "-m" ]; then
-        B_RM_MZ="true"
+        B_RM_MZ=true
         shift
     fi
     
@@ -117,7 +120,7 @@ function ProcessParam() {
             BackupOrigin $full_path
             
             expand -t 4 $full_path | sed -e 's/[ ]*$//g' > $TMP_FILE
-            if [ "$B_RM_MZ" == "true" ]; then
+            if $B_RM_MZ; then
                 tr -d '\015\032' < $TMP_FILE > $full_path
             else
                 cp $TMP_FILE $full_path

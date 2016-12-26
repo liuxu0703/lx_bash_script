@@ -1,28 +1,30 @@
 #!/bin/bash
-#v1.0   2011-12-30  store directorys
-#v1.1   2012-02-08  add -l option, use the latest dir_store as current
-#v1.2   2012-03-01  add -d option, delete a given dir
-#v1.3   2012-03-19  add -c option, store compiled libs into compiled_store
-#v1.4   2012-10-24  change -x option.
+# author : liuxu-0703@163.com
+
+# v1.0   2011-12-30  store directorys
+# v1.1   2012-02-08  add -l option, use the latest dir_store as current
+# v1.2   2012-03-01  add -d option, delete a given dir
+# v1.3   2012-03-19  add -c option, store compiled libs into compiled_store
+# v1.4   2012-10-24  change -x option.
 #                   Now, by default, dirstore.sh will NOT store file dir with a file
 #                   add -s option, store file dir with file
-#v1.5   2013-01-29  add -g option, goto dir
+# v1.5   2013-01-29  add -g option, goto dir
 
-SH_DOC=$(dirname $0)/sh_document
+SH_DOC=/tmp/sh_document
 SH_DOCUMENT=$SH_DOC/document$(date +%m%d)
 TMP=/tmp/dirstore_tmp_$(date +%m%d%H%M%S)
 DIR_STORE=$SH_DOCUMENT/dir_store
 COM_LIBS_STORE=$SH_DOCUMENT/compiled_store
-B_USE_COM_STORE="false"
-B_STORE_FILE_DIR="false"
+B_USE_COM_STORE=false
+B_STORE_FILE_DIR=false
 FILE_LINE=
 DIR_LINE=
-DEBUG="false"
+DEBUG=false
 
 trap "CLEAR_WORK" EXIT
 
 DEBUG() {
-    if [ "$DEBUG" == "true" ]; then
+    if $DEBUG; then
         $@
     fi
 }
@@ -131,7 +133,7 @@ elif [ "$1" == "-d" ]; then
     exit 0
 elif [ "$1" == "-c" ]; then
     DIR_STORE=$COM_LIBS_STORE
-    B_USE_COM_STORE="true"
+    B_USE_COM_STORE=true
     shift
 fi
 
@@ -139,7 +141,7 @@ DEBUG echo "DEBUG: -c option enabled: $B_USE_COM_STORE ; display file: $DIR_STOR
 
 if [ $# -eq 0 ]; then
     if [ -f $DIR_STORE ]; then
-        if [ "$B_USE_COM_STORE" == "true" ]; then
+        if $B_USE_COM_STORE; then
             [ -f $DIR_STORE ] && cp $DIR_STORE $TMP
             sort -n $TMP | uniq > $DIR_STORE
         fi
@@ -159,13 +161,13 @@ if [ $# -eq 1 ]; then
     if [ -f $1 ]; then
         FILE_LINE=$(readlink -f $1)
         echo $FILE_LINE >> $TMP
-        if [ "$B_USE_COM_STORE" == "false" -a "$B_STORE_FILE_DIR" == "true" ]; then
+        if [ ! $B_USE_COM_STORE -a $B_STORE_FILE_DIR ]; then
             DIR_LINE=$(dirname $FILE_LINE)"/"
             echo $DIR_LINE >> $TMP
         fi
         sort -n $TMP | uniq > $DIR_STORE
     elif [ -d $1 ]; then
-        if [ "$B_USE_COM_STORE" == "true" ]; then
+        if $B_USE_COM_STORE; then
             echo
             echo "param should be a full path of a file."
             exit 1

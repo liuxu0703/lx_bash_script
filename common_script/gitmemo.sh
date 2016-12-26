@@ -1,17 +1,19 @@
 #!/bin/bash
+# author : liuxu-0703@163.com
 
-CMD_DIR=$(dirname $0)/cmdmemo_doc
-EDITOR=gedit
+MEMO_DIR=$(dirname $0)/docs/gitmemo_doc
+CMD_DIR=$MEMO_DIR/cmds
+EDITOR=vim
 
 #====================================
 
 function ShellHelp() {
 cat <<EOF
 USAGE:
-cmdmemo.sh <cmd>     :  show cmd memo
-cmdmemo.sh -e <cmd>  :  edit cmd memo
-cmdmemo.sh -l        :  show available cmd memo
-cmdmemo.sh -h        :  print help
+gitmemo.sh <cmd>     :  show cmd memo
+gitmemo.sh -e <cmd>  :  edit cmd memo
+gitmemo.sh -l        :  show available cmd memo
+gitmemo.sh -h        :  print help
 EOF
 }
 
@@ -34,8 +36,8 @@ function ProcessOptions() {
                 elif [ -f "$CMD_DIR/$cmd" ]; then
                     $EDITOR $CMD_DIR/$cmd &
                 else
-                    echo "memo file does not exist for command $cmd"
-                    read -p "do you want to create new memo file for $cmd ? "
+                    echo "memo file does not exist for git command $cmd"
+                    read -p "do you want to create new memo file for $cmd ? (y/n): "
                     if [[ ( "$REPLY" == "y" ) || ( "$REPLY" == "Y" ) || ( "$REPLY" == "yes" ) ]]; then
                         echo "$cmd" > $CMD_DIR/$cmd
                         $EDITOR $CMD_DIR/$cmd &
@@ -78,7 +80,6 @@ if [ -f "$CMD_DIR/$1" ]; then
     more $CMD_DIR/$1
     echo "----------------------------------------------------"
 else
-    echo "cmd $1 does not have a memo."
     ShellHelp
 fi
 

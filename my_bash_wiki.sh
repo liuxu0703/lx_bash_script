@@ -1,11 +1,11 @@
 #!/bin/bash
 
-# AUTHOR : liuxu
+# author : liuxu
+# date   : 2016-10-24
 # util functions for writting sh
 
-SH_DOC=$(dirname $0)/sh_document
-SH_DOCUMENT=$(dirname $0)/sh_document/document$(date +%m%d)
-TMP=/tmp/namestring_$(date +%m%d%H%M%S)
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+TMP_FILE=/tmp/namestring_$(date +%m%d%H%M%S)
 
 #====================================
 #needed by every sh
@@ -19,7 +19,7 @@ DEBUG() {
 ERRORTRAP() {
     local shell_name=`basename $0`
     echo "==================="
-    echo "MY SHELL ERROR: "
+    echo "MY SCRIPT ERROR: "
     echo "NAME: $shell_name"
     echo "ERRNO: $?"
     echo "==================="
@@ -28,12 +28,12 @@ trap "ERRORTRAP" ERR
 
 CLEAR_WORK() {
     if [ -e $TMP_DIR ]; then
-        sudo rm -rf $TMP_DIR
+        rm $TMP_DIR
     fi
 }
 trap "CLEAR_WORK" EXIT
 
-function ShellHelp() {
+function Help() {
 cat <<EOF
 
 --------------------------------------------------------------------------------
@@ -50,10 +50,10 @@ EOF
 #====================================
 #util functions
 
-#see if $1 is interger or not
-#if $2, $3 is presented, see if $1 is inside [$2, $3]
-#yield true or false
-#if present, $2 and $3 should be interger
+# see if $1 is interger or not
+# if $2, $3 is presented, see if $1 is inside [$2, $3] (both $2 and $2 are included)
+# $2 and $3 should be interger
+# yield true or false
 function IsInteger() {
     local ret       #return value
 
@@ -152,8 +152,33 @@ ProcessArgs "${@:$arg_start}"
 
 #====================================
 
-#read config information from *.config file
-function ReadProjectConfig() {
-    echo
-}
+# 'for' loop example 1
+for s in Shire RiverRun Moria Rohan Gondor MinasMorgul Mordor; do
+    echo "a tour to Middle Earth: $s"
+done
+
+# 'for' loop example 2
+for ((i=0; i<9; ++i)); do
+    echo "how many free cities are there across the narrow sea? $i"
+done
+
+# 'for' loop example 3
+ARRAY=(WinterFall Eyrie RiverRun CasterlyRock StormsEnd HighGarden SunSpear)
+for castle in ${ARRAY[*]}; do
+    echo "high sits of Seven Kingdom: $castle"
+done
+
+# 'for' loop example 4
+for i in {1..7}; do
+   echo "Voldemort will return in book $i ."
+done
+
+# 'for' loop example 4
+# last param is step. bellow segment will print 5 lines
+for i in {1..10..2}; do
+   echo "the bear and the maiden fair. $i"
+done
+
+#====================================
+
 
