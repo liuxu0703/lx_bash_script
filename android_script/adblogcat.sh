@@ -28,13 +28,14 @@ declare -a A_KEYWORDSETS                        #array of keyword set names
 declare -a A_KEYWORDS                           #array of keywords in the selected keyword set
 
 SCRIPT_PATH="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+SCRIPT_CONF_DIR=$HOME/.lx_bash_conf
+KEYWORDSET_XML=$SCRIPT_CONF_DIR/keywordset.xml
 KEYWORD_MANAGER_PY=$SCRIPT_PATH/keyword_manager.py
-KEYWORDSET_XML=$SCRIPT_PATH/conf/keywordset.xml
-KEYWORD_MANAGER="python $KEYWORD_MANAGER_PY"    #keyword_manager.py
+KEYWORD_MANAGER="python $KEYWORD_MANAGER_PY $KEYWORDSET_XML"    #keyword_manager.py
 
 #[ "$UID" = "0" ] && SUDO= || SUDO=sudo
 #ADB="$SUDO /usr/local/bin/adb"
-ADB="adb"                        #TODO: specify your adb here
+ADB="adb"  #TODO: specify your adb here
 
 DEBUG() {
     if [ "$DEBUG" == "true" ]; then
@@ -62,6 +63,54 @@ generate filter for 'adb logcat' command, the filter is generated according to O
 without KEYWORDS $shell_name will bring up a keyword set menu for the user to choose.
 --------------------------------------------------------------------------------
 
+EOF
+}
+
+function CreateConf() {
+    if [ ! -d $SCRIPT_CONF_DIR ]; then
+        mkdir $SCRIPT_CONF_DIR
+    fi
+
+cat > $KEYWORDSET_XML <<EOF
+<?xml version="1.0" encoding="utf-8"?>
+<KeywordSetManager>
+    <keywordset>
+        <name>ALL</name>
+        <type>exclude</type>
+        <active>true</active>
+        <keywords>
+
+        </keywords>
+    </keywordset>
+
+    <keywordset>
+        <name>system</name>
+        <type>include</type>
+        <active>true</active>
+        <keywords>
+            <k>AndroidRuntime</k>
+            <k>System.err</k>
+            <k>dalvikvm</k>
+        </keywords>
+    </keywordset>
+
+    <keywordset>
+        <name>common_exclude</name>
+        <type>exclude</type>
+        <active>true</active>
+        <keywords>
+            <k>JavaBinder</k>
+            <k>PowerManager</k>
+            <k>PackageManager</k>
+            <k>AlarmManager</k>
+            <k>AudioPolicyManagerUtil</k>
+            <k>AudioPolicyManager</k>
+            <k>dalvikvm</k>
+            <k>wpa_supplicant</k>
+        </keywords>
+    </keywordset>
+
+</KeywordSetManager>
 EOF
 }
 
@@ -259,6 +308,10 @@ function PrintFilterInfo() {
 
 #=============================
 #main()
+
+if [ ! -e $KEYWORDSET_XML ]; then
+    CreateConf
+fi
 
 ProcessParam $*
 [ "$B_PID" == "false" ] && GenerateFilter

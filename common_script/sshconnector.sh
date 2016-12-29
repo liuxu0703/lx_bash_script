@@ -1,16 +1,17 @@
 #!/bin/bash
 # author : liuxu-0703@163.com
 
-# v1.0   2016-05-25
+# v1.0  2016-05-25
 #       list and connect to remote ssh server
 
 
 DEBUG="false"
 
 SCRIPT_PATH="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
+SCRIPT_CONF_DIR=$HOME/.lx_bash_conf
+HOST_XML=$SCRIPT_CONF_DIR/ssh_host_set.xml
 HOST_MANAGER_PY=$SCRIPT_PATH/ssh_host_set_manager.py
-HOST_XML=$SCRIPT_PATH/conf/ssh_host_set.xml
-HOST_MANAGER="python $HOST_MANAGER_PY"
+HOST_MANAGER="python $HOST_MANAGER_PY $HOST_XML"
 
 DEBUG() {
     if [ "$DEBUG" == "true" ]; then
@@ -22,19 +23,50 @@ function ShellHelp() {
 cat <<EOF
 
 --------------------------------------------------------------------------------
-NAME:
-ssh_host_connector.sh
-
 USAGE:
-ssh_host_connector.sh [-d host_name]
+ssh_host_connector.sh [-e] [-h]
 
 OPTIONS:
--d: print host connect info with given host name
+-e: gedit configuration xml file
+-h: print help
 
 DESCRIPTION:
 connect to ssh remote server use hosts defined in ssh_host_set.xml
 --------------------------------------------------------------------------------
 
+EOF
+}
+
+function CreateConf() {
+    if [ ! -d $SCRIPT_CONF_DIR ]; then
+        mkdir $SCRIPT_CONF_DIR
+    fi
+
+cat > $HOST_XML <<EOF
+<?xml version="1.0" encoding="utf-8"?>
+<SshHostmanager>
+
+    <host>
+        <name>sample_host_1</name>
+        <ip>1.1.1.1</ip>
+        <port></port>
+        <user>root</user>
+        <password>123456</password>
+        <index>1</index>
+        <enabled>true</enabled>
+    </host>
+
+    <host>
+        <name>sample_host_2</name>
+        <ip>2.2.2.2</ip>
+        <port></port>
+        <user>liuxu</user>
+        <password>654321</password>
+        <index>2</index>
+        <enabled>true</enabled>
+    </host>
+
+</SshHostmanager>
 EOF
 }
 
@@ -142,9 +174,21 @@ function SelectHost() {
 #=============================
 #main()
 
+if [ ! -f $HOST_XML ]; then
+    CreateConf
+fi
 if [ "$1" == "-h" ]; then
     ShellHelp
     exit
-else
-    SelectHost
 fi
+if [ "$1" == "-e" ]; then
+    if [ -f $HOST_XML ]; then
+        vim $HOST_XML
+    else
+        echo "conf xml file not found: $HOST_XML"
+    fi
+    exit
+fi
+
+SelectHost
+

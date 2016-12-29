@@ -5,6 +5,22 @@
 # execute this script use "source" or "." in ~/.bashrc or /etc/profile
 # to import bellow command into environment.
 
+#===================================================
+
+MY_PATH_LIST=(\
+    ~/workspace_bash/lx_bash_script/common_script\
+    ~/workspace_bash/lx_bash_script/android_script\
+    ~/workspace_bash/lx_bash_script/gerrit_script\
+    ~/workspace_bash/lx_bash_script/local_script/lx_eco_thinkpad\
+)
+
+for my_path in ${MY_PATH_LIST[*]}; do
+    PATH=$PATH:$my_path
+done
+export PATH
+
+#===================================================
+
 # back up the given path.
 function backup() {
     local BACKUP_DIR=$HOME/backup_dir

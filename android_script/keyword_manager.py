@@ -177,8 +177,9 @@ class KeywordManager:
 
 
 if __name__ == '__main__':
-    km = KeywordManager(sys.path[0] + os.sep + 'conf/keywordset.xml')
-    opts, args = getopt.getopt(sys.argv[1:], 't:n:d')
+    opts, args = getopt.getopt(sys.argv[2:], 't:n:d')
+    xml = sys.argv[1];
+    km = KeywordManager(xml)
     
     for op, value in opts:
         if op == '-t':

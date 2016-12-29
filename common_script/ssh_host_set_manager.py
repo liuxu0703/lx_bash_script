@@ -137,14 +137,15 @@ class HostManager:
 
 
 if __name__ == '__main__':
-    manager = HostManager(sys.path[0] + '/conf/ssh_host_set.xml')
-    opts, args = getopt.getopt(sys.argv[1:], 'ldn:i:p:u:w:')
+    host_xml = sys.argv[1]
+    opts, args = getopt.getopt(sys.argv[2:], 'ldn:i:p:u:w:')
+    manager = HostManager(host_xml)
     
     for op, value in opts:
         if op == '-l':
             manager.listHosts()
         elif op == '-d':
-            for host in km.host_list:
+            for host in manager.host_list:
                 host.printAllInfo()
         elif op == '-n':
             manager.printHostDetail(value)
