@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ServerSetManager>
+
+    <server_set>
+        <name>test</name>
+        <active>true</active>
+        <servers>
+            <server name="test" ip="121.40.91.109" user="techops" />
+        </servers>
+    </server_set>
+
+    <server_set>
+        <name>web</name>
+        <active>true</active>
+        <servers>
+            <server name="web1" ip="121.41.49.165" user="techops" />
+            <server name="web2" ip="121.40.142.43" user="techops" />
+        </servers>
+    </server_set>
+
+</ServerSetManager>

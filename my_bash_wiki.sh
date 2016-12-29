@@ -138,7 +138,7 @@ function ProcessOptions() {
 function ProcessArgs() {
     DEBUG echo "args: $@"
     if [ $# -eq 0 ]; then
-        #no args, just print help
+        echo "no args present, print help"
     fi
 
     for arg in $@; do
@@ -151,6 +151,7 @@ arg_start=$?
 ProcessArgs "${@:$arg_start}"
 
 #====================================
+# loop example
 
 # 'for' loop example 1
 for s in Shire RiverRun Moria Rohan Gondor MinasMorgul Mordor; do
@@ -158,7 +159,7 @@ for s in Shire RiverRun Moria Rohan Gondor MinasMorgul Mordor; do
 done
 
 # 'for' loop example 2
-for ((i=0; i<9; ++i)); do
+for ((i=1; i<=9; ++i)); do
     echo "how many free cities are there across the narrow sea? $i"
 done
 
@@ -180,5 +181,28 @@ for i in {1..10..2}; do
 done
 
 #====================================
+# array example
+
+# evaluation example1
+declare -a Starks
+Starks[0]=Rob
+Starks[1]=Jon
+Starks[2]=Sansa
+Starks[3]=Arya
+Starks[4]=Brandon
+Starks[5]=Rickon
+
+Lannisters=([0]=Jaime [1]=Ceise [2]=Tyrion)
+Baratheons=(Robert Stannis Renly)
+
+# get
+echo "oldest of the Starks: ${Starks[0]}"
+
+# print all values in an array
+echo "Eddard Stark's: ${Starks[*]}"
+echo "Eddard Stark's: ${Starks[@]}"
+
+# length of an array
+echo "Tywin Lannister has ${#Lannisters[@]} children"
 
 
