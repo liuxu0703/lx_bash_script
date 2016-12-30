@@ -3,10 +3,12 @@
 # date   : 2016-08-31
 # I can't memorize "git push" command with reviewers, that's why this sh is written.
 
-source conf/gerrit_config
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CMD=
 BRANCH=
+
+source $SCRIPT_DIR/conf/gerrit_config
 declare -a REVIEWERS
 
 #====================================
@@ -72,7 +74,7 @@ function SelectReviewer() {
     echo
     echo "Available Commconly Used Reviewers:"
     
-    for reviewer in ${REVIEWERS[@]}; do
+    for reviewer in ${DEVELOPERS[@]}; do
         local reviewer_email=$(GetReviewerEmail $reviewer)
         echo "  [$idx]. $reviewer_email"
         let idx++
@@ -81,9 +83,9 @@ function SelectReviewer() {
     echo "  [X]. Done Picking"
     read -p "Pick a Reviewer ['Enter' to finish pick]: "
     
-    if [ $(IsInteger $REPLY 1 ${#REVIEWERS[*]}) == "true" ]; then
+    if [ $(IsInteger $REPLY 1 ${#DEVELOPERS[*]}) == "true" ]; then
         local n=$(expr $REPLY - 1)
-        local reviewer=${REVIEWERS[$n]}
+        local reviewer=${DEVELOPERS[$n]}
         local length=${#REVIEWERS[@]}
         REVIEWERS[$length]=$(GetReviewerEmail $reviewer)
         SelectReviewer
@@ -168,7 +170,7 @@ CMD="$CMD' review HEAD:refs/for/$BRANCH"
 
 echo "git command generated: "
 echo $CMD
-eval "$CMD"  #use eval to prevent ' from being ignored
+#eval "$CMD"  #use eval to prevent ' from being ignored
 
 #read -p "Is it right? ['Enter' to confirm]: "
 #echo

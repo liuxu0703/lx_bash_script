@@ -78,7 +78,8 @@ function backup() {
 function cdd() {
     if [ $# -eq 0 ]; then
         echo "cdd usage:"
-        echo "cdd file   : go to parent dir of the file, or the file itself if it is an dir"
+        echo "cdd file_path"
+        echo "cd dir if param is a dir path, or parent dir if param is a file path"
         return
     fi
     

@@ -3,18 +3,19 @@
 
 GIT_ADDR="121.40.91.109"
 GIT_PORT="29418"
+DEFAULT_USER=liux
 
-REVIEWERS=(\
-    yangzy\
+DEVELOPERS=(\
+    tanp\
+    zhangm\
     fancc\
+    yangzy\
     lianghj\
     xumq\
     niuhx\
     shangsb\
     mengql\
     liux\
-    zhangm\
-    tanp\
     zhaosx\
     chenhq\
 )

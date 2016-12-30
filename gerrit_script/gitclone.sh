@@ -3,12 +3,13 @@
 # date   : 2016-08-31
 # clone and config project
 
-source conf/gerrit_config
-
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_NAME=
 PROJECT_BRANCH=master
 USER_NAME=
 USER_EMAIL=
+
+source $SCRIPT_DIR/conf/gerrit_config
 
 #===================================================
 
@@ -80,7 +81,7 @@ if [ "$PROJECT_BRANCH" == "" ]; then
     PROJECT_BRANCH=master
 fi
 if [ "$USER_NAME" == "" ]; then
-    USER_NAME=$USER
+    USER_NAME=$DEFAULT_USER
 fi
 USER_EMAIL=$(GetReviewerEmail $USER_NAME)
 
