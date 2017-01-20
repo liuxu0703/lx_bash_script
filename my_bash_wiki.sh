@@ -89,7 +89,7 @@ function ReadyADB() {
 }
 
 #====================================
-#process args and opts
+# process args and opts
 
 #process options
 function ProcessOptions() {
@@ -204,5 +204,19 @@ echo "Eddard Stark's: ${Starks[@]}"
 
 # length of an array
 echo "Tywin Lannister has ${#Lannisters[@]} children"
+
+#====================================
+# misc
+
+# redirect std out and std err to a same file
+find $HOME -name .bashrc > /tmp/tmp_find_log 2>&1
+find $HOME -name .bashrc &> /tmp/tmp_find_log
+
+# drop all output
+ls /home 1>$- 2>$-
+
+
+
+
 
 

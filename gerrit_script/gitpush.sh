@@ -170,7 +170,7 @@ CMD="$CMD' review HEAD:refs/for/$BRANCH"
 
 echo "git command generated: "
 echo $CMD
-#eval "$CMD"  #use eval to prevent ' from being ignored
+eval "$CMD"  #use eval to prevent ' from being ignored
 
 #read -p "Is it right? ['Enter' to confirm]: "
 #echo

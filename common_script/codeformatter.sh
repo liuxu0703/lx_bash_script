@@ -12,9 +12,7 @@
 
 DEBUG=false
 B_RM_MZ=false
-SH_DOC=$(dirname $0)/sh_document
-SH_DOCUMENT=$(dirname $0)/sh_document/document$(date +%m%d)
-BACKUP_DIR=$SH_DOCUMENT/code_formatter_backup
+BACKUP_DIR=/tmp/code_formatter_backup
 BACKUP_FILE=
 TMP_FILE=/tmp/code_formatter_tmpfile_$(date +%m%d%H%M%S)
 
