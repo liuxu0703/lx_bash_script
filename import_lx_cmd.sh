@@ -8,10 +8,10 @@
 #===================================================
 
 MY_PATH_LIST=(\
-    ~/workspace_bash/lx_bash_script/common_script\
-    ~/workspace_bash/lx_bash_script/android_script\
-    ~/workspace_bash/lx_bash_script/gerrit_script\
-    ~/workspace_bash/lx_bash_script/local_script/lx_eco_thinkpad\
+    ~/workspace/bash/lx_bash_script/common_script\
+    ~/workspace/bash/lx_bash_script/android_script\
+    ~/workspace/bash/lx_bash_script/gerrit_script\
+    ~/workspace/bash/lx_bash_script/local_script\
 )
 
 for my_path in ${MY_PATH_LIST[*]}; do
