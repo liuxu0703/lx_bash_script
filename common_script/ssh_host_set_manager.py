@@ -116,9 +116,13 @@ class HostManager:
         '''
         for host in self.host_list:
             if host.enabled or self.print_inactive:
-                print host.name + '(' + host.ip + ')'
-                
-                
+                print 'host_name=' + host.name +\
+                      ',host_ip=' + host.ip +\
+                      ',host_port=' + host.port +\
+                      ',user_name=' + host.user +\
+                      ',password=' + host.password
+
+ 
     def getHostByName(self, name):
         '''get host by name
         '''

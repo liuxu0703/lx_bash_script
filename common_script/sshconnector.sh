@@ -5,7 +5,7 @@
 #       list and connect to remote ssh server
 
 
-DEBUG="false"
+DEBUG=false
 
 SCRIPT_PATH="$(cd "$(dirname ${BASH_SOURCE[0]})" && pwd)"
 SCRIPT_CONF_DIR=$HOME/.lx_bash_conf
@@ -14,7 +14,7 @@ HOST_MANAGER_PY=$SCRIPT_PATH/ssh_host_set_manager.py
 HOST_MANAGER="python $HOST_MANAGER_PY $HOST_XML"
 
 DEBUG() {
-    if [ "$DEBUG" == "true" ]; then
+    if $DEBUG; then
         $@
     fi
 }
@@ -97,32 +97,65 @@ function IsInterger() {
     echo $ret
 }
 
+function printHostAttr() {
+    echo $1 | awk -F "$2=" '{print $2}' | awk -F "," '{print $1}'
+}
+
 function SelectHost() {
-    DEBUG echo "A_HOSTS : ${A_HOSTS[*]}"
     local A_HOSTS
     local tmp_arr
     local length
     
+    local arr_host
+    local arr_host_user
+    local arr_host_name
+    local arr_host_ip
+    local arr_host_port
+
+    local selection
+    
     tmp_arr=$($HOST_MANAGER -l)
     for s in $tmp_arr; do
+        DEBUG echo $s
         length=${#A_HOSTS[*]}
         A_HOSTS[$length]=$s
     done
     
-    DEBUG echo "A_HOSTS : ${A_HOSTS[*]}"
-    
     echo
     echo "Host Connector Menu: "
+    local count=${#A_HOSTS[*]}
     local i=0
-    while [ $i -lt ${#A_HOSTS[*]} ]; do
+    while [ $i -lt $count ]; do
+        selection=""
         index=$(expr $i + 1)
-        echo "  [$index]. ${A_HOSTS[$i]}"
+        arr_host=${A_HOSTS[$i]}
+        arr_host_ip=$(printHostAttr $arr_host "host_ip")
+        arr_host_port=$(printHostAttr $arr_host "host_port")
+        arr_host_name=$(printHostAttr $arr_host "host_name")
+        arr_host_user=$(printHostAttr $arr_host "user_name")
+        arr_host_pwd=$(printHostAttr $arr_host "password")
+        if [ $count -ge 10 -a $index -lt 10 ]; then
+            selection="[ $index]."
+        else
+            selection="[$index]."
+        fi
+        selection="$selection $arr_host_name - $arr_host_ip"
+        if [ ! "$arr_host_port" == "" ]; then
+            selection="${selection}:${arr_host_port}"
+        fi
+        selection="$selection as $arr_host_user"
+        echo "  $selection"
         let i++
     done
-    
-    echo "  [S]. List All Host Detail"
-    echo "  [E]. Edit ssh_host_set.xml"
-    echo "  [X]. Do Nothing and Exit"
+   
+    if [ $count -ge 10 ]; then
+        space=" "
+    else
+        space=""
+    fi
+    echo "  [${space}S]. List All Host Detail"
+    echo "  [${space}E]. Edit ssh_host_set.xml"
+    echo "  [${space}X]. Do Nothing and Exit"
     read -p "choose a keywordset: "
 
     if [[ ( "$REPLY" == "x" ) || ( "$REPLY" == "X" ) ]]; then
@@ -149,25 +182,26 @@ function SelectHost() {
         exit
     fi
     
-    local name=$(echo ${A_HOSTS[$n]} | awk -F "(" '{print $1}')
-    local ip=$($HOST_MANAGER -i $name)
-    local port=$($HOST_MANAGER -p $name)
-    local user=$($HOST_MANAGER -u $name)
-    local password=$($HOST_MANAGER -w $name)
+    arr_host=${A_HOSTS[$n]}
+    arr_host_ip=$(printHostAttr $arr_host "host_ip")
+    arr_host_port=$(printHostAttr $arr_host "host_port")
+    arr_host_name=$(printHostAttr $arr_host "host_name")
+    arr_host_user=$(printHostAttr $arr_host "user_name")
+    arr_host_pwd=$(printHostAttr $arr_host "password")
     
     local ssh_command
-    if [ "$port" == "" ]; then
-        ssh_command="$user@$ip"
+    if [ "$arr_host_port" == "" ]; then
+        ssh_command="$arr_host_user@${arr_host_ip}"
     else
-        ssh_command="$user@$ip:$port"
+        ssh_command="$arr_host_user@${arr_host_ip}:${arr_host_port}"
     fi
     
-    if [ "$password" == "" -o $(which sshpass) == "" ]; then
-        echo "connect by ssh $user@$ip"
-        ssh $user@$ip
+    if [ "$arr_host_pwd" == "" -o $(which sshpass) == "" ]; then
+        echo "connect by ssh $ssh_command"
+        ssh $ssh_command 
     else
-        echo "connect by [ssh $ssh_command] with password [$password]"
-        sshpass -p $password ssh $user@$ip
+        echo "connect by [ssh $ssh_command] with password"
+        sshpass -p $arr_host_pwd ssh $ssh_command
     fi
 }
 
