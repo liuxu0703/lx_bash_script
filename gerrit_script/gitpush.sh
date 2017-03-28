@@ -8,7 +8,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 CMD=
 BRANCH=
 
-source $SCRIPT_DIR/conf/gerrit_config
+source $SCRIPT_DIR/gerrit_config
 declare -a REVIEWERS
 
 #====================================

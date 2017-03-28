@@ -9,7 +9,7 @@ PROJECT_BRANCH=master
 USER_NAME=
 USER_EMAIL=
 
-source $SCRIPT_DIR/conf/gerrit_config
+source $SCRIPT_DIR/gerrit_config
 
 #===================================================
 
@@ -18,7 +18,9 @@ cat <<EOF
 
 --------------------------------------------------------------------------------
 USAGE:
-gitclone.sh project_name
+gitclone.sh [-b branch] [-u user] project_name
+-b: specify a branch for 'git clone'. default is master.
+-u: specify a user. default user is writen in gerrit_config file
 
 DESCRIPTION:
 clone and config project
@@ -29,7 +31,7 @@ EOF
 
 #process options
 function ProcessOptions() {
-    while getopts ":hb:" opt; do
+    while getopts ":hb:u:" opt; do
         case "$opt" in
             "h")
                 ShellHelp
@@ -37,6 +39,9 @@ function ProcessOptions() {
                 ;;
             "b")
                 PROJECT_BRANCH=$OPTARG
+                ;;
+            "u")
+                USER_NAME=$OPTARG
                 ;;
             "?")
                 #Unknown option
