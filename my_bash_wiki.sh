@@ -34,7 +34,7 @@ CLEAR_WORK() {
 trap "CLEAR_WORK" EXIT
 
 function Help() {
-cat <<EOF
+cat <<"EOF"
 
 --------------------------------------------------------------------------------
 USAGE:

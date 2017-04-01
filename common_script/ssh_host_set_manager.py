@@ -13,48 +13,36 @@ from xml.dom.minidom import parse, parseString
 class Host:
     
     def __init__(self, xml_node):
-        self.name = self.getText(xml_node.getElementsByTagName('name')[0])
-        self.ip = self.getText(xml_node.getElementsByTagName('ip')[0])
-        self.port = self.getText(xml_node.getElementsByTagName('port')[0])
-        self.user = self.getText(xml_node.getElementsByTagName('user')[0])
-        self.index = int(self.getText(xml_node.getElementsByTagName('index')[0]))
-        active = self.getText(xml_node.getElementsByTagName('enabled')[0])
+        self.xml_node = xml_node
+        self.name = self.getXmlAttr('name')
+        self.ip = self.getXmlAttr('ip')
+        self.port = self.getXmlAttr('port')
+        self.user = self.getXmlAttr('user')
+        self.index = int(self.getXmlAttr('index'))
+        is_active = self.getXmlAttr('enabled')
         try:
-            self.password = self.getText(xml_node.getElementsByTagName('password')[0])
+            self.password = self.getXmlAttr('password')
         except:
             self.password = ""
-        if active == 'true':
-            self.enabled = True
-        else:
+        if is_active == 'false':
             self.enabled = False
+        else:
+            self.enabled = True
 
-
-    def getText(self, text_node):
-        '''get text from xml node
-        $text_node should be a node with type NODE_TEXT
-        return str of the text
-        '''
-        ret = ''
-        for n in text_node.childNodes:
-            ret = ret + n.nodeValue
-        return ret
-
+    def getXmlAttr(self, attrname):
+        return self.xml_node.getAttribute(attrname)
 
     def printIp(self):
         print self.ip
-        
     
     def printUser(self):
         print self.user
         
-        
     def printPort(self):
         print self.port
         
-        
     def printPassword(self):
         print self.password
-
 
     def printAllInfo(self):
         print 'name: ' + self.name

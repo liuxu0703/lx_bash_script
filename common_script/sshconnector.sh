@@ -46,25 +46,23 @@ cat > $HOST_XML <<EOF
 <?xml version="1.0" encoding="utf-8"?>
 <SshHostmanager>
 
-    <host>
-        <name>sample_host_1</name>
-        <ip>1.1.1.1</ip>
-        <port></port>
-        <user>root</user>
-        <password>123456</password>
-        <index>1</index>
-        <enabled>true</enabled>
-    </host>
+    <host
+        name="sample_host_1"
+        ip="1.1.1.1"
+        port=""
+        user="user"
+        index="1"
+        password="123456"
+        enabled="true" />
 
-    <host>
-        <name>sample_host_2</name>
-        <ip>2.2.2.2</ip>
-        <port></port>
-        <user>liuxu</user>
-        <password>654321</password>
-        <index>2</index>
-        <enabled>true</enabled>
-    </host>
+    <host
+        name="sample_host_2"
+        ip="2.2.2.2"
+        port=""
+        user="root"
+        index="1"
+        password="654321"
+        enabled="true" />
 
 </SshHostmanager>
 EOF
