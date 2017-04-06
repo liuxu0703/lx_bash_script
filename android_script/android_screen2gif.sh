@@ -107,8 +107,12 @@ function MP4ToGIF() {
 
 #process options
 function ProcessOptions() {
-    while getopts ":r:b:f:d:o:" opt; do
+    while getopts ":r:b:f:d:o:h" opt; do
         case "$opt" in
+            "h")
+                Help
+                exit 0
+                ;;
             "r")
                 RESOLUTION=$OPTARG
                 ;;
