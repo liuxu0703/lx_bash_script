@@ -33,6 +33,11 @@ CLEAR_WORK() {
 }
 trap "CLEAR_WORK" EXIT
 
+CTRL_C() {
+    echo "ctrl-c is hit"
+}
+trap CTRL_C SIGINT
+
 function Help() {
 cat <<"EOF"
 
@@ -114,19 +119,19 @@ function ProcessOptions() {
             "?")
                 #Unknown option
                 echo "* unknown option: $opt"
-                ShellHelp
+                Help
                 exit
                 ;;
             ":")
                 #an option needs a value, which, however, is not presented
                 echo "* option -$opt needs a value, but it is not presented"
-                ShellHelp
+                Help
                 exit
                 ;;
             *)
                 #unknown error, should not occur
                 echo "* unknown error while processing options and params"
-                ShellHelp
+                Help
                 exit
                 ;;
         esac
